@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "django-draft",
-    version = "0.2.0",
+    version = "0.2.1",
     description = """
     Drafts for django admin
     """,
