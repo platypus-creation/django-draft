@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-14 01:25+0200\n"
-"PO-Revision-Date: 2011-08-14 01:34\n"
+"POT-Creation-Date: 2011-08-14 18:06+0200\n"
+"PO-Revision-Date: 2011-08-14 18:21\n"
 "Last-Translator: Guillaume Esquevin <guillaume.esquevin@platypus-creation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Translated-Using: django-rosetta 0.6.2\n"
 
-#: models.py:7 models.py:8
+#: models.py:6 models.py:7
 msgid "Path"
 msgstr "Chemin"
 
-#: models.py:11
+#: models.py:10
 msgid "Drafts"
 msgstr "Brouillon"
 
@@ -31,34 +31,46 @@ msgstr "Brouillon"
 msgid "Draft saved"
 msgstr "Brouillon enregistré"
 
-#: templates/admin/submit_line.html:4
+#: views.py:28
+msgid "Draft deleted"
+msgstr "Brouillon supprimé"
+
+#: views.py:30
+msgid "There was no draft corresponding to this document."
+msgstr "Il n'y avait aucun brouillon correspondant à ce document."
+
+#: templates/admin/submit_line.html:7 templates/admin/submit_line.html:25
 msgid "Delete"
 msgstr "Supprimer"
 
-#: templates/admin/submit_line.html:5
+#: templates/admin/submit_line.html:8 templates/admin/submit_line.html:21
 msgid "Save"
 msgstr "Enregistrer"
 
-#: templates/admin/submit_line.html:6
+#: templates/admin/submit_line.html:9 templates/admin/submit_line.html:29
 msgid "Save as draft"
 msgstr "Enregistrer en tant que brouillon"
 
-#: templates/admin/submit_line.html:7
+#: templates/admin/submit_line.html:10 templates/admin/submit_line.html:26
 msgid "Save as new"
 msgstr "Enregistre comme nouveau"
 
-#: templates/admin/submit_line.html:8
+#: templates/admin/submit_line.html:11 templates/admin/submit_line.html:27
 msgid "Save and add another"
 msgstr "Enregitrer et ajouter un nouveau"
 
-#: templates/admin/submit_line.html:9
+#: templates/admin/submit_line.html:12 templates/admin/submit_line.html:28
 msgid "Save and continue editing"
 msgstr "Enregistrer et continuer les modifications"
 
-#: templates/admin/submit_line.html:11
+#: templates/admin/submit_line.html:14 templates/admin/submit_line.html:24
 msgid "Load draft"
 msgstr "Charger le brouillon"
 
-#: templates/admin/submit_line.html:12
+#: templates/admin/submit_line.html:15 templates/admin/submit_line.html:23
 msgid "Return to current"
 msgstr "Revenir à l'actuel"
+
+#: templates/admin/submit_line.html:16 templates/admin/submit_line.html:22
+msgid "Discard draft"
+msgstr "Supprimer ce brouillon"
