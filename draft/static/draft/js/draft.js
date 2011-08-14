@@ -98,7 +98,6 @@ django.jQuery(function($){
         if (data){
             draft = data
         }
-        console.log(draft)
         if(draft){
             $(".loadDraft").parent().show()
             $(".loadDraft").click(function(e){
