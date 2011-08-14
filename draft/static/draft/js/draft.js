@@ -56,7 +56,6 @@ django.jQuery(function($){
     		if(except != _name in names){
     		    var input = $("[" + attr + "='" + _name + "']", this)
     		    
-    		    
     		    if (input.is(':checkbox')){
 		            input.attr('checked', value == 'on')
     		    } else if(input.is(':radio')){
@@ -64,11 +63,13 @@ django.jQuery(function($){
     		    } else if(input.is('textarea')){
                     input.val(value)
                     input.get(0).innerHTML = value
-                    if (tinyMCE != undefined){
+                    if (typeof tinyMCE != 'undefined'){
                         if (tinyMCE.get(input.id)){
                             var editor = tinyMCE.get(input.id)[0]
                             editor.setContent(value)
-                            hightlight(editor.contentAreaContainer)
+                            if (value != input.val()){
+                                hightlight(editor.contentAreaContainer)
+                            }
                         }
                 	}
     		    } else {
@@ -85,7 +86,7 @@ django.jQuery(function($){
     }
 
 
-    $(".saveDraft").parent().show()
+    $(".saveDraft").parents(':hidden').andSelf().show()
     $(".saveDraft").click(function(e){
         // Redirect form to our own action
         $('form').attr('action', '/draft/save'+window.location.pathname)
@@ -94,16 +95,20 @@ django.jQuery(function($){
 
     var saved_form = $('form').serialize()
     var draft = null
+    var hiddenLoadDraft = $(".loadDraft").parents(':hidden').andSelf()
+    var hiddenReturnCurrent = $(".returnCurrent").parents(':hidden').andSelf()
+    var hiddenDiscardDraft = $(".discardDraft").parents(':hidden').andSelf()
     $.get('/draft/load'+window.location.pathname, function(data){
         if (data){
             draft = data
         }
         if(draft){
-            $(".loadDraft").parent().show()
+            hiddenLoadDraft.show()
             $(".loadDraft").click(function(e){
                 e.preventDefault()
-                $(".loadDraft").parent().hide()
-                $(".returnCurrent").parent().show()
+                hiddenLoadDraft.hide()
+                hiddenReturnCurrent.show()
+                hiddenDiscardDraft.show()
                 $('form').deserialize(draft, {except: ["csrfmiddlewaretoken"]})
             })
         }
@@ -113,8 +118,15 @@ django.jQuery(function($){
 
     $(".returnCurrent").click(function(e){
         e.preventDefault()
-        $(".loadDraft").parent().show()
-        $(".returnCurrent").parent().hide()
+        hiddenLoadDraft.show()
+        hiddenReturnCurrent.hide()
+        hiddenDiscardDraft.hide()
         $('form').deserialize(saved_form, {except: ["csrfmiddlewaretoken"]})
+    })    
+
+    $(".discardDraft").click(function(e){
+        e.preventDefault()
+        $('form').attr('action', '/draft/discard'+window.location.pathname)
+        $('form').get(0).submit()
     })    
 })

@@ -10,7 +10,7 @@ def save(request, path):
     draft, created = Draft.objects.get_or_create(path=path)
     draft.serialized_data = request.POST.urlencode()
     draft.save()
-    messages.add_message(request, messages.SUCCESS, _(u'Draft saved'))
+    messages.add_message(request, messages.INFO, _(u'Draft saved'))
     return HttpResponseRedirect('/%s' % path)
     
 @require_GET
@@ -21,3 +21,12 @@ def load(request, path):
     except Draft.DoesNotExist:
         return HttpResponse('')
 
+@require_POST
+def discard(request, path):
+    try:
+        Draft.objects.get(path=path).delete()
+        messages.add_message(request, messages.INFO, _(u'Draft deleted'))
+    except Draft.DoesNotExist:
+        messages.add_message(request, messages.ERROR, _(u'There was no draft corresponding to this document.'))
+    
+    return HttpResponseRedirect('/%s' % path)

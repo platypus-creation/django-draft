@@ -1,6 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
-
 class Draft(models.Model):
     """Draft model serializing a form related to an admin url"""
     
